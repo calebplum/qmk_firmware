@@ -19,25 +19,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC, KC_TAB, KC_LGUI,  KC_LSFT, KC_BSPC,  KC_LCTL, KC_LALT, KC_SPC,  MO(_RS), KC_MINS, KC_QUOT, KC_ENT ),
 
   /*
-   *  !       @     up     {    }        ||     pgup    7     8     9    *
-   *  #     left   down  right  $        ||     pgdn    4     5     6    +
-   *  [       ]      (     )    &        ||       `     1     2     3    \
-   * lower  insert super shift bksp ctrl || alt space   fn    .     0    =
+   *  !       @     up     $    %        ||        home    7     8     9    pgup
+   *  (     left   down  right  )        ||        end     4     5     6    pgdn
+   *  [       ]      #     {    }    ^   ||   &     *      1     2     3    +
+   * lower  insert super shift del  ctrl ||  alt  space    fn    0     .    =
    */
   [_RS] = LAYOUT( /* [> RAISE <] */
-    KC_EXLM, KC_AT,   KC_UP,   KC_DLR,  KC_PERC,                  KC_PGUP, KC_7,    KC_8,   KC_9, KC_BSPC,
-    KC_LPRN, KC_LEFT, KC_DOWN, KC_RGHT, KC_RPRN,                  KC_PGDN, KC_4,    KC_5,   KC_6, KC_BSLS,
-    KC_LBRC, KC_RBRC, KC_HASH, KC_LCBR, KC_RCBR, KC_CIRC, KC_AMPR,KC_ASTR, KC_1,    KC_2,   KC_3, KC_PLUS,
-    TG(_LW), KC_INS,  KC_LGUI, KC_LSFT, KC_BSPC, KC_LCTL, KC_LALT,KC_SPC,  KC_TRNS, KC_DOT, KC_0, KC_EQL ),
+    KC_EXLM, KC_AT,   KC_UP,   KC_DLR,  KC_PERC,                   KC_HOME, KC_7,    KC_8,   KC_9, KC_PGUP,
+    KC_LPRN, KC_LEFT, KC_DOWN, KC_RGHT, KC_RPRN,                   KC_END,  KC_4,    KC_5,   KC_6, KC_PGDN,
+    KC_LBRC, KC_RBRC, KC_HASH, KC_LCBR, KC_RCBR, KC_CIRC, KC_AMPR, KC_ASTR, KC_1,    KC_2,   KC_3, KC_PLUS,
+    TG(_LW), KC_INS,  KC_LGUI, KC_LSFT, KC_DEL,  KC_LCTL, KC_LALT, KC_SPC,  KC_TRNS, KC_0, KC_DOT, KC_EQL ),
   /*
-   * insert home   up  end   pgup       ||      up     F7    F8    F9   F10
-   *  del   left  down right pgdn       ||     down    F4    F5    F6   F11
-   *       volup             reset      ||             F1    F2    F3   F12
-   *       voldn  super shift bksp ctrl || alt space   L0  prtsc scroll pause
+   *  insert    home      up       end   pgup       ||       up     F7    F8    F9      F10
+   *   del      left     down     right  pgdn       ||      down    F4    F5    F6      F11
+   * prevtrack  volup  nexttrack                    ||              F1    F2    F3      F12
+   *   L0       voldn    super    shift  bksp  ctrl || alt  space   L0  prtsc scroll playpause
    */
   [_LW] = LAYOUT( /* [> LOWER <] */
     KC_INS,  KC_HOME, KC_UP,   KC_END,  KC_PGUP,                   KC_UP,   KC_F7,   KC_F8,   KC_F9,   KC_F10  ,
     KC_DEL,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                   KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
-    KC_NO,   KC_VOLU, KC_NO,   KC_NO,   RESET,   _______, _______, KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
-    KC_NO,   KC_VOLD, KC_LGUI, KC_LSFT, KC_BSPC, KC_LCTL, KC_LALT, KC_SPC,  TO(_QW), KC_PSCR, KC_SLCK, KC_PAUS )
+    KC_MPRV, KC_VOLU, KC_MNXT, KC_NO,   KC_NO,   _______, _______, KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
+    TO(_QW), KC_VOLD, KC_LGUI, KC_LSFT, KC_BSPC, KC_LCTL, KC_LALT, KC_SPC,  TO(_QW), KC_PSCR, KC_SLCK, KC_MPLY )
 };

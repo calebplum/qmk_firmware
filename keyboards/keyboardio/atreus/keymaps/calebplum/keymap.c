@@ -5,6 +5,7 @@
 
 #include QMK_KEYBOARD_H
 
+int os = 0; // 0 for mac, 1 for linux
 
 enum layer_names {
     _QW,
@@ -28,6 +29,8 @@ enum custom_keycodes {
   WCSNAPBR,   // Bottom right
   WCSNAPOFF,  // Snap restore
   WCMAX,      // Maximise
+  WCSM,       // Select Mac
+  WCSL,       // Select Linux
 };
 
 
@@ -37,73 +40,193 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case WCMONLEFT:
     if (record->event.pressed) {
-      tap_code16(LCTL(LGUI(KC_DELETE)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(LCTL(LGUI(KC_DELETE)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LALT(KC_DELETE)));
+        break;
+      }
     }
     break;
 
     case WCMONRIGHT:
     if (record->event.pressed) {
-      tap_code16(LCTL(LGUI(KC_PGDN)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(LCTL(LGUI(KC_PGDN)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LALT(KC_PGDN)));
+        break;
+      }
     }
     break;
     
     case WCSNAPLEFT:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_LEFT)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_LEFT)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_INSERT)));
+        break;
+      }
     }
     break;
         
     case WCSNAPRIGHT:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_RIGHT)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_RIGHT)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_PGUP)));
+        break;
+      }
     }
     break;
             
     case WCSNAPUP:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_SCROLLLOCK)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_SCROLLLOCK)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_SCROLLLOCK)));
+        break;
+      }
     }
     break;
                          
     case WCSNAPDOWN:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_END)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_END)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_END)));
+        break;
+      }
     }
     break;
                          
     case WCSNAPTL:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_PSCREEN)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_PSCREEN)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_PSCREEN)));
+        break;
+      }
     }
     break;
                          
     case WCSNAPTR:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_PAUSE)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_PAUSE)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_PAUSE)));
+        break;
+      }
     }
     break;
                          
     case WCSNAPBL:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_DELETE)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_DELETE)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_DELETE)));
+        break;
+      }
     }
     break;
                          
     case WCSNAPBR:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_PGDN)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_PGDN)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_PGDN)));
+        break;
+      }
     }
     break;
                          
     case WCSNAPOFF:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_DOWN)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_DOWN)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_DOWN)));
+        break;
+      }
     }
     break;
                          
     case WCMAX:
     if (record->event.pressed) {
-      tap_code16(RCTL(LALT(KC_UP)));
+      switch (os) {
+
+        case 0: // Mac
+        tap_code16(RCTL(LALT(KC_UP)));
+        break;
+
+        case 1: // Linux
+        tap_code16(LCTL(LGUI(KC_UP)));
+        break;
+      }
+    }
+    break;
+
+    case WCSM:
+    if (record->event.pressed) {
+      os = 0;
+    }
+    break;
+
+    case WCSL:
+    if (record->event.pressed) {
+      os = 1;
     }
     break;
 
@@ -179,8 +302,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  L0  _  _  _  _  _  ||  _  _  L0  _  _  _
    */
   [_WC] = LAYOUT( /* [> WINCTRL <] */
-    KC_NO,   WCMONRIGHT, KC_NO,   KC_NO,      KC_NO,                     WCMAX,  WCSNAPTL,   WCSNAPUP,   WCSNAPTR,    KC_NO,
+    WCSM,    WCSL,       KC_NO,   KC_NO,      KC_NO,                     WCMAX,  WCSNAPTL,   WCSNAPUP,   WCSNAPTR,    KC_NO,
     KC_NO,   WCMONLEFT,  KC_NO,   WCMONRIGHT, KC_NO,                     KC_NO,  WCSNAPLEFT, WCSNAPOFF,  WCSNAPRIGHT, KC_NO,
-    KC_NO,   KC_NO,      KC_NO,   KC_NO,      KC_NO,  _______,  _______, KC_NO,  WCSNAPBL,   WCSNAPDOWN, WCSNAPBR,    KC_NO,
-    TO(_QW), KC_INS,     KC_LGUI, KC_LSFT,    KC_DEL, KC_LCTL, KC_LALT,  KC_SPC, TO(_QW),    KC_0,       KC_DOT,      KC_EQL )
+    KC_NO,   KC_NO,      KC_NO,   KC_NO,      KC_NO,  KC_GRV,  _______,  KC_NO,  WCSNAPBL,   WCSNAPDOWN, WCSNAPBR,    KC_NO,
+    TO(_QW), KC_TAB,     KC_LGUI, KC_LSFT,    KC_DEL, KC_LCTL, KC_LALT,  KC_SPC, TO(_QW),    KC_0,       KC_DOT,      KC_EQL )
 };

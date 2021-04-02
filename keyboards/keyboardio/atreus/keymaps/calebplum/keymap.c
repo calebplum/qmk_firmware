@@ -27,6 +27,7 @@ enum custom_keycodes {
   WCSNAPBL,   // Bottom left
   WCSNAPBR,   // Bottom right
   WCSNAPOFF,  // Snap restore
+  WCMAX,      // Maximise
 };
 
 
@@ -97,6 +98,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case WCSNAPOFF:
     if (record->event.pressed) {
       tap_code16(RCTL(LALT(KC_DOWN)));
+    }
+    break;
+                         
+    case WCMAX:
+    if (record->event.pressed) {
+      tap_code16(RCTL(LALT(KC_UP)));
     }
     break;
 
@@ -172,8 +179,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  L0  _  _  _  _  _  ||  _  _  L0  _  _  _
    */
   [_WC] = LAYOUT( /* [> WINCTRL <] */
-    KC_NO,   WCMONRIGHT, KC_NO,   KC_NO,      KC_NO,                    KC_NO,  WCSNAPTL,   WCSNAPUP,   WCSNAPTR,    KC_NO,
-    KC_NO,   WCMONLEFT,  KC_NO,   WCMONRIGHT, KC_NO,                    KC_NO,  WCSNAPLEFT, WCSNAPOFF,  WCSNAPRIGHT, KC_NO,
-    KC_NO,   KC_NO,      KC_NO,   KC_NO,      KC_NO,  KC_NO,   KC_NO,   KC_NO,  WCSNAPBL,   WCSNAPDOWN, WCSNAPBR,    KC_NO,
-    TO(_QW), KC_INS,     KC_LGUI, KC_LSFT,    KC_DEL, KC_LCTL, KC_LALT, KC_SPC, TO(_QW),    KC_0,       KC_DOT,      KC_EQL )
+    KC_NO,   WCMONRIGHT, KC_NO,   KC_NO,      KC_NO,                     WCMAX,  WCSNAPTL,   WCSNAPUP,   WCSNAPTR,    KC_NO,
+    KC_NO,   WCMONLEFT,  KC_NO,   WCMONRIGHT, KC_NO,                     KC_NO,  WCSNAPLEFT, WCSNAPOFF,  WCSNAPRIGHT, KC_NO,
+    KC_NO,   KC_NO,      KC_NO,   KC_NO,      KC_NO,  _______,  _______, KC_NO,  WCSNAPBL,   WCSNAPDOWN, WCSNAPBR,    KC_NO,
+    TO(_QW), KC_INS,     KC_LGUI, KC_LSFT,    KC_DEL, KC_LCTL, KC_LALT,  KC_SPC, TO(_QW),    KC_0,       KC_DOT,      KC_EQL )
 };

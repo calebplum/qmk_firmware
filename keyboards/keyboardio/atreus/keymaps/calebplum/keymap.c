@@ -281,7 +281,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_EXLM,     KC_AT,   KC_UP,   KC_DLR,  KC_PERC,                                             KC_HOME, KC_7,    KC_8,   KC_9, KC_PLUS,
     KC_LPRN,     KC_LEFT, KC_DOWN, KC_RGHT, KC_RPRN,                                             KC_END,  KC_4,    KC_5,   KC_6, KC_EQL,
     KC_LBRC,     KC_RBRC, KC_HASH, KC_LCBR, KC_RCBR, KC_CIRC,              KC_AMPR,              KC_ASTR, KC_1,    KC_2,   KC_3, KC_PGUP,
-    TD(TD_LSEL), TO(_WC),  KC_LGUI, KC_LSFT, KC_DEL,  MT(MOD_LCTL, KC_DEL), MT(MOD_LALT, KC_TAB), KC_SPC,  KC_TRNS, KC_0, KC_DOT, KC_PGDN ),
+    TD(TD_LSEL), TT(_WC),  KC_LGUI, KC_LSFT, KC_DEL,  MT(MOD_LCTL, KC_DEL), MT(MOD_LALT, KC_TAB), KC_SPC,  KC_TRNS, KC_0, KC_DOT, KC_PGDN ),
 
   /*
    *  insert    home      up       end   pgup           ||           up     F7    F8    F9      F10
